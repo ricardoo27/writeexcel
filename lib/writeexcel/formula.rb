@@ -166,9 +166,10 @@ class Formula < ExcelFormulaParser       #:nodoc:
         q.push [:RANGE3D , s.matched]
       elsif s.scan(/\$?[A-I]?[A-Z]\$?\d+/)
         q.push [:REF2D,  s.matched]
-      elsif s.scan(/[^!(,]+!\$?[A-I]?[A-Z]\$?\d+/)
+      elsif s.scan(/[^\s!(,+*-\/\^%&]+!\$?[A-I]?[A-Z]\$?\d+/)
+      
         q.push [:REF3D , s.matched]
-      elsif s.scan(/'[^']+'!\$?[A-I]?[A-Z]\$?\d+/)
+      elsif s.scan(/'[\s^'+*-\/^%&]+'!\$?[A-I]?[A-Z]\$?\d+/) #edited regular expression
         q.push [:REF3D , s.matched]
       elsif s.scan(/<=/)
         q.push [:LE , s.matched]
@@ -198,6 +199,7 @@ class Formula < ExcelFormulaParser       #:nodoc:
     end
     q.push [:EOL, nil]
   end
+ 
 
   def parse(formula)
     @q = scan(formula)
