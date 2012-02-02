@@ -901,8 +901,8 @@ class Workbook < BIFFWriter
 
   def check_sheetname_length(name, name_utf16be)       #:nodoc:
     # Check that sheetname is <= 31 (1 or 2 byte chars). Excel limit.
-    limit           = name_utf16be ? 62 : 31
-    raise "Sheetname $name must be <= 31 chars" if name.bytesize > limit
+    limit           = name_utf16be ? 62 : 100 #31 Increased length limit of sheet name to 100
+    raise "Sheetname $name must be <= 100 chars" if name.bytesize > limit
   end
 
   def check_sheetname_even(name)       #:nodoc:
