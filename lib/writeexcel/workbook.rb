@@ -131,6 +131,11 @@ class Workbook < BIFFWriter
     # Set colour palette.
     set_palette_xl97
   end
+  
+  # return custom format from array at index
+  def format(index)
+    @formats[22+index]
+  end
 
   #
   # Calls finalization methods and explicitly close the OLEwriter files
