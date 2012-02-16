@@ -169,7 +169,7 @@ class Formula < ExcelFormulaParser       #:nodoc:
       elsif s.scan(/[^\s!(,+*-\/\^%&]+!\$?[A-I]?[A-Z]\$?\d+/)
       
         q.push [:REF3D , s.matched]
-      elsif s.scan(/'[\s^'+*-\/^%&]+'!\$?[A-I]?[A-Z]\$?\d+/) #edited regular expression
+      elsif s.scan(/'[^'+*-\/^%&]+'!\$?[A-I]?[A-Z]\$?\d+/) #edited regular expression
         q.push [:REF3D , s.matched]
       elsif s.scan(/<=/)
         q.push [:LE , s.matched]
