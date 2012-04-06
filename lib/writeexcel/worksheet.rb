@@ -970,8 +970,7 @@ class Worksheet < BIFFWriter
     format.set_merge_range
 
     # Excel doesn't allow a single cell to be merged
-    raise "Can't merge single cell" if rwFirst  == rwLast and
-    colFirst == colLast
+   # raise "Can't merge single cell" if rwFirst  == rwLast and colFirst == colLast # removed the single-cell check in function merge_range
 
     # Swap last row/col with first row/col as necessary
     rwFirst,  rwLast  = rwLast,  rwFirst  if rwFirst  > rwLast
